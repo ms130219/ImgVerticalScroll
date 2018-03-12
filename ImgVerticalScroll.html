@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #box{
+            width: 640px;
+            height: 400px;
+            overflow: hidden;
+            margin: 100px auto;
+            position: relative;
+            border: 1px solid #000;
+        }
+        #ad{
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #top,#bot{
+            width: 640px;
+            height: 200px;
+            position: absolute;
+            left: 0;
+            cursor: pointer;
+        }
+        #top{
+            top: 0;
+        }
+        #bot{
+            top: 200px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <img src="gg.jpg" id="ad">
+    <span id="top"></span>
+    <span id="bot"></span>
+</div>
+
+<script>
+    window.onload=function () {
+        var ad=document.getElementById('ad');
+        var top=document.getElementById('top');
+        var bot=document.getElementById('bot');
+        var timer=null,t=0;
+
+        bot.onmouseover=function () {
+            //先清除
+            clearInterval(timer);
+            //后启动
+            timer=setInterval(function () {
+                if(t>=-906){
+                    t-=10;
+                    ad.style.top=t+'px';
+                }
+            },30)
+        };
+        top.onmouseover=function () {
+            clearInterval(timer);
+            timer=setInterval(function () {
+                if(t<=-10){
+                    t+=10;
+                    ad.style.top=t+'px';
+                }
+            },30)
+        };
+        top.onmouseout=bot.onmouseout=function () {
+            clearInterval(timer)
+        }
+    }
+</script>
+</body>
+</html>
